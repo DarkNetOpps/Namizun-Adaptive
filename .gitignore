@@ -1,5 +1,10 @@
 /.idea
 /.git
 /venv
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
 range_ips
-namizun.log
