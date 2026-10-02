@@ -13,7 +13,7 @@ uploader_count = 0
 
 
 def start_udp_uploader():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     target_ip, game_port = ip.get_random_ip_port()
     remain_upload_size = upload_size = int(
         uniform(total_upload_size_for_each_ip * 0.7, total_upload_size_for_each_ip * 1.2))

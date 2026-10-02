@@ -32,7 +32,7 @@ def get_network_usage():
     required_upload = download * target_ratio
     difference = required_upload - upload
 
-    if difference < 1000000000:
+    if difference <= 100000000:
         return 0
 
     return difference
