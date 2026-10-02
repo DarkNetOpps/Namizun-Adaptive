@@ -26,11 +26,15 @@ def reboot_finder():
 
 def get_network_usage():
     upload, download = reboot_finder()
-    limitation = int(uniform(database.get_cache_parameter('coefficient_limitation') * 0.7,
-                             database.get_cache_parameter('coefficient_limitation') * 1.3))
-    difference = download * limitation - upload
+
+    target_ratio = 10
+
+    required_upload = download * target_ratio
+    difference = required_upload - upload
+
     if difference < 1000000000:
         return 0
+
     return difference
 
 
