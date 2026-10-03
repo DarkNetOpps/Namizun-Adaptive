@@ -41,8 +41,11 @@ def set_upload_size_and_uploader_count(total_upload_size, total_uploader_count):
     uploader_count = int(uniform(total_uploader_count * 0.05, total_uploader_count * 0.2))
     coefficient_of_upload = int((database.get_cache_parameter('coefficient_buffer_size') + 1) / 2)
     upload_size_max_range = choices([50, 100, 150], [1, 2, 3], k=1)[0]
-    total_upload_size_for_each_ip = int(uniform((upload_size_max_range - 50) * coefficient_of_upload,
-                                                upload_size_max_range * coefficient_of_upload)) * 1024 * 1024
+    total_upload_size_for_each_ip = max(
+        5,
+        int(uniform((upload_size_max_range - 50) * coefficient_of_upload,
+                    upload_size_max_range * coefficient_of_upload))
+    ) * 1024 * 1024
     if total_upload_size_for_each_ip * uploader_count > total_upload_size:
         adjustment_of_upload_size_and_uploader_count(total_upload_size)
 

@@ -29,10 +29,17 @@ def get_network_usage():
 
     target_ratio = 10
 
+    current_ratio = upload / download if download > 0 else target_ratio
+
+    if current_ratio < 9.5:
+        target_ratio = 10.2
+    elif current_ratio < 10:
+        target_ratio = 10.05
+
     required_upload = download * target_ratio
     difference = required_upload - upload
 
-    if difference <= 20000000:
+    if difference <= 1024 * 1024:
         return 0
 
     return difference
